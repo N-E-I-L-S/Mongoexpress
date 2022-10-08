@@ -9,6 +9,12 @@ app.get('/', (req, res)=>{
     res.send("Server is Up")
 })
 
+app.use(
+    express.urlencoded({ extended: true })
+);
+    
+app.use(express.json());
+
 app.use('/api/user',require('./app/routes/routes'));
 
 app.listen(3001, ()=>{
