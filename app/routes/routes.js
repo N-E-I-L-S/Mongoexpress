@@ -32,4 +32,11 @@ router.delete('/:id',function(req,res,next){
     });
 });
 
+// delete all users
+router.delete('/',function(req,res,next){
+    User.deleteMany(req.body).then(function(user){
+        res.send(user);
+    }).catch(next);
+});
+
 module.exports = router;
