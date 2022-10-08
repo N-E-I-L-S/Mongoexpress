@@ -4,24 +4,24 @@ const user=mongoose.Schema({
 
     name:{
         type:String,
-        required:true
+        required:false
     },
     email:{
         type:String,
-        required:true
+        required:false
     },
-    SapId:{
+    sapid:{
         type:Number,
         required:false,
         max:10
     },
-    Branch:{
+    branch:{
         type:String,
         required:false,
     },
-    Year:{
+    year:{
         type:String,
-        required:true,
+        required:false,
     },
 })
 

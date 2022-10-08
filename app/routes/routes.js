@@ -1,38 +1,35 @@
-module.exports = app =>{
-    // const user = require('../controller/controller');
+const express = require('express');
+const router = express.Router();
+const User = require('../models/models');
 
-    const router = require("express").Router();
+// get all users
+router.get('/',function(req,res,next){
+    User.find({}).then(function(user){
+        res.send(user);
+    }).catch(next);
+});
 
-    // Create new entry
-    router.post("/", (req, res)=>{
-        console.log("Created new Entry")
-    })
+// add a new user 
+router.post('/',function(req,res,next){
+    User.create(req.body).then(function(user){
+        res.send(user);
+    }).catch(next);
+});
 
-    //Get all entries
-    router.get("/", ()=>{
-        console.log("Get all");
-    })
+// update a user 
+router.put('/:id',function(req,res,next){
+    User.findOneAndUpdate({_id: req.params.id},req.body).then(function(user){
+        User.findOne({_id: req.params.id}).then(function(user){
+            res.send(user);
+        });
+    });
+});
 
-    //Get entry by ID
-    router.get("/:id", ()=>{
-        console.log("Get by ID")
-    })
+// delete a user 
+router.delete('/:id',function(req,res,next){
+    User.findOneAndDelete({_id: req.params.id}).then(function(user){
+        res.send(user);
+    });
+});
 
-    // Update an entry by ID
-    router.put("/:id", ()=>{
-        console.log("Update by ID")
-    })
-
-    // Delete an entry by ID
-    router.delete("/:id", ()=>{
-        console.log("Delete ID")
-    })
-
-    //Delete all entries
-    router.delete("/", ()=>{
-        console.log("Delete All")
-    })
-
-    //Middleware
-    app.use("/api/user", router);
-}
+module.exports = router;
