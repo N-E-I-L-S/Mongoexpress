@@ -8,20 +8,19 @@ const user=mongoose.Schema({
     },
     email:{
         type:String,
-        required:true
+        required:false
     },
     sapid:{
         type:Number,
-        required:true,
-        max:10
+        required:false,
     },
     branch:{
         type:String,
-        required:true,
+        required:false,
     },
     year:{
         type:String,
-        required:true,
+        required:false,
     },
 })
 
